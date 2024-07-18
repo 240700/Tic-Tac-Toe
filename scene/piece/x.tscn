@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://buwrxc5tpue0m"]
+
+[node name="X" type="Node2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-40, -40)
+points = PackedVector2Array(0, 0, 80, 80)
+default_color = Color(1, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(-40, -40)
+points = PackedVector2Array(80, 0, 0, 80)
+default_color = Color(1, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2

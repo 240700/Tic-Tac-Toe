@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b46avi8kjbngx"]
+
+[ext_resource type="Script" path="res://scene/piece/o_view.gd" id="2_7e4j4"]
+
+[node name="O" type="Node2D"]
+
+[node name="View" type="Node2D" parent="."]
+script = ExtResource("2_7e4j4")

@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=3 uid="uid://camdx3nbd6o18"]
+
+[ext_resource type="PackedScene" uid="uid://bvq6uv7fd8jbf" path="res://scene/board/board.tscn" id="1_1cq6x"]
+[ext_resource type="Script" path="res://scene/main.gd" id="1_jojpq"]
+[ext_resource type="PackedScene" uid="uid://b46avi8kjbngx" path="res://scene/piece/o.tscn" id="3_lxkmb"]
+[ext_resource type="Script" path="res://scene/ui.gd" id="3_n7ftc"]
+[ext_resource type="PackedScene" uid="uid://buwrxc5tpue0m" path="res://scene/piece/x.tscn" id="4_sdtjl"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_jojpq")
+
+[node name="Board" parent="." instance=ExtResource("1_1cq6x")]
+position = Vector2(83, 411)
+
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("main")]
+script = ExtResource("3_n7ftc")
+main = NodePath("..")
+
+[node name="restart" type="Button" parent="UI"]
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "再 来"
+
+[node name="VS_NPC" type="Button" parent="UI"]
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -724.0
+offset_right = 100.0
+offset_bottom = -674.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "与AI对战"
+
+[node name="PVP" type="Button" parent="UI"]
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -638.0
+offset_right = 100.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "双人对战"
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -109.0
+offset_right = 200.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="WinnerBar" type="HBoxContainer" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="O" parent="UI/Panel/VBoxContainer/WinnerBar" instance=ExtResource("3_lxkmb")]
+position = Vector2(313, 38.5)
+
+[node name="X" parent="UI/Panel/VBoxContainer/WinnerBar" instance=ExtResource("4_sdtjl")]
+position = Vector2(313, 38.5)
+
+[node name="Label" type="Label" parent="UI/Panel/VBoxContainer/WinnerBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "胜利者是："
+
+[node name="draw" type="Label" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "平 局"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "游戏结束"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="restart_2" type="Button" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 50
+text = "再 来"
+
+[connection signal="pressed" from="UI/restart" to="UI" method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/VS_NPC" to="UI" method="_on_vs_npc_pressed"]
+[connection signal="pressed" from="UI/PVP" to="UI" method="_on_pvp"]
+[connection signal="pressed" from="UI/Panel/VBoxContainer/restart_2" to="UI" method="_on_restart_pressed"]
